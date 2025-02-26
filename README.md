@@ -9,3 +9,5 @@ More details can be found on my [blog](https://the78mole.de/reverse-engineering-
 The hardware itself is available on [tindie](https://www.tindie.com/products/24664/).
 
 The repo for the esphome component has a [seperate repo](https://github.com/the78mole/esphome_components).
+
+Find the Github pages with the WebTools button here: https://the78mole.github.io/ESPhome-KM271-WiFi/
