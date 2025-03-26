@@ -73,10 +73,7 @@ external_components:
     components: [ km271_wifi ]
  
 esp32_improv:
-  authorizer: improvble
-  authorized_duration: 120s
-  status_indicator: led3
-  identify_duration: 60s
+  authorizer: none
 
 improv_serial: 
 
