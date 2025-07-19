@@ -4,7 +4,7 @@ on:
   release:
     types: [published]
   workflow_run:
-    workflows: 
+    workflows:
       - "Semantic Release"
     types:
       - completed
@@ -13,14 +13,16 @@ permissions:
   contents: write
 
 jobs:
-  build-firmware:
+  set-release-version:
+    name: Extract Release Version
     runs-on: ubuntu-latest
     outputs:
-      release-version: ${{ steps.set-version.outputs.release_version }}
+      release_version: ${{ steps.set-version.outputs.release_version }}
     steps:
-    
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Extract release-version
         id: set-version
@@ -31,21 +33,21 @@ jobs:
             echo "release_version=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Build Firmware
-        uses: esphome/workflows/.github/workflows/build.yml@2025.4.0
-        with:
-          files: |
-            buderus-km271_en_8MB.factory.yaml
-            buderus-km271_en_espidf.factory.yaml
-            buderus-km271_en.factory.yaml
-          esphome-version: 2025.7.2
-          release-version: ${{ steps.set-version.outputs.release_version }}
+  build-firmware:
+    name: Build Firmware
+    needs: set-release-version
+    uses: esphome/workflows/.github/workflows/build.yml@2025.4.0
+    with:
+      files: |
+        buderus-km271_en_8MB.factory.yaml
+        buderus-km271_en_espidf.factory.yaml
+        buderus-km271_en.factory.yaml
+      esphome-version: 2025.7.2
+      release-version: ${{ needs.set-release-version.outputs.release_version }}
 
   upload-to-release:
     name: Upload to Release
+    needs: build-firmware
     uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.4.0
-    needs:
-      - build-firmware
     with:
-      version: ${{ needs.build-firmware.outputs.release_version }}
-      #version: ${{ github.event.release.tag_name }}
+      version: ${{ needs.set-release-version.outputs.release_version }}
