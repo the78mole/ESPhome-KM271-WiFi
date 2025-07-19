@@ -33,7 +33,7 @@ jobs:
         #### Modify above here to match your project ####
 
         esphome-version:
-          - stable
+          - 2025.7.2
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4.2.2
