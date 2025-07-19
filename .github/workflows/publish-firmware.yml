@@ -16,7 +16,7 @@ jobs:
       files: |
         buderus-km271_en_8MB.factory.yaml
         buderus-km271_en_espidf.factory.yaml
-      esphome-version: stable
+      esphome-version: 2025.7.2
       #combined-name: buderus-km271-wifi
       #### Modify above here to match your project ####
 
