@@ -61,22 +61,32 @@ jobs:
           FIXES=$(git log ${OLD_TAG}..HEAD --grep="^fix" --pretty=format:"- %s" || true)
           BREAKS=$(git log ${OLD_TAG}..HEAD --grep="!:" --pretty=format:"- %s" || true)
 
+          ANY_OUTPUT=false
+
           if [ -n "$FEATS" ]; then
             echo -e "\n### ✨ Features" >> $GITHUB_OUTPUT
             echo "$FEATS" >> $GITHUB_OUTPUT
+            ANY_OUTPUT=true
           fi
 
           if [ -n "$FIXES" ]; then
             echo -e "\n### 🐛 Fixes" >> $GITHUB_OUTPUT
             echo "$FIXES" >> $GITHUB_OUTPUT
+            ANY_OUTPUT=true
           fi
 
           if [ -n "$BREAKS" ]; then
             echo -e "\n### 💥 Breaking Changes" >> $GITHUB_OUTPUT
             echo "$BREAKS" >> $GITHUB_OUTPUT
+            ANY_OUTPUT=true
           fi
 
-          echo -e "\n---\n[Full Changelog](https://github.com/${{ github.repository }}/compare/${OLD_TAG}...${NEW_TAG})" >> $GITHUB_OUTPUT
+          if [ "$ANY_OUTPUT" = false ]; then
+            echo -e "\n### 📝 Commits" >> $GITHUB_OUTPUT
+            git log ${OLD_TAG}..HEAD --pretty=format:"- %s" >> $GITHUB_OUTPUT
+          fi
+
+          echo -e "\n---\n**Full Changelog:** [${OLD_TAG}...${NEW_TAG}](https://github.com/${{ github.repository }}/compare/${OLD_TAG}...${NEW_TAG})" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
