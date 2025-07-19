@@ -16,6 +16,8 @@ jobs:
   set-release-version:
     name: Extract Release Version
     runs-on: ubuntu-latest
+    # Only run if workflow_run was successful or if it's a direct release trigger
+    if: github.event_name == 'release' || github.event.workflow_run.conclusion == 'success'
     outputs:
       release_version: ${{ steps.set-version.outputs.release_version }}
     steps:
@@ -28,9 +30,12 @@ jobs:
         id: set-version
         run: |
           if [ "${{ github.event.release.tag_name }}" != "" ]; then
+            # Direct release trigger
             echo "release_version=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
           else
-            echo "release_version=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
+            # Workflow run trigger - get the latest release tag
+            LATEST_TAG=$(git describe --tags --abbrev=0)
+            echo "release_version=${LATEST_TAG}" >> $GITHUB_OUTPUT
           fi
 
   build-firmware:
