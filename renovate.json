@@ -3,9 +3,12 @@
   "extends": [
     "config:recommended"
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": ["^\\.github/workflows/.*\\.ya?ml$"],
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^\\.github/workflows/.*\\.ya?ml$/"
+      ],
       "matchStrings": [
         "esphome-version:\\s*\\n(?:[ \\t]*- stable\\n)?(?<depValues>([ \\t]*- (?<currentValue>\\d+\\.\\d+\\.\\d+)\\n)+)"
       ],
@@ -15,10 +18,17 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["ghcr.io/esphome/esphome"],
-      "matchDatasources": ["docker"],
+      "matchPackageNames": [
+        "ghcr.io/esphome/esphome"
+      ],
+      "matchDatasources": [
+        "docker"
+      ],
       "groupName": "ESPHome Versionsupdate",
-      "matchUpdateTypes": ["minor", "patch"]
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
     }
   ]
 }
