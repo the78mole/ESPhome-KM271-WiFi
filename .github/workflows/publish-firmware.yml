@@ -3,27 +3,43 @@ name: Publish Firmware
 on:
   release:
     types: [published]
+  workflow_run:
+    workflows: 
+      - "Semantic Release"
+    types:
+      - completed
 
 permissions:
   contents: write
 
 jobs:
   build-firmware:
-    name: Build Firmware
-    uses: esphome/workflows/.github/workflows/build.yml@2025.4.0
-    with:
-      #### Modify below here to match your project ####
-      files: |
-        buderus-km271_en_8MB.factory.yaml
-        buderus-km271_en_espidf.factory.yaml
-        buderus-km271_en.factory.yaml
-      esphome-version: 2025.7.2
-      #combined-name: buderus-km271-wifi
-      #### Modify above here to match your project ####
+    runs-on: ubuntu-latest
+    outputs:
+      release-version: ${{ steps.set-version.outputs.release_version }}
+    steps:
+    
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      release-summary: ${{ github.event.release.body }}
-      release-url: ${{ github.event.release.html_url }}
-      release-version: ${{ github.event.release.tag_name }}
+      - name: Extract release-version
+        id: set-version
+        run: |
+          if [ "${{ github.event.release.tag_name }}" != "" ]; then
+            echo "release_version=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+          else
+            echo "release_version=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build Firmware
+        uses: esphome/workflows/.github/workflows/build.yml@2025.4.0
+        with:
+          files: |
+            buderus-km271_en_8MB.factory.yaml
+            buderus-km271_en_espidf.factory.yaml
+            buderus-km271_en.factory.yaml
+          esphome-version: 2025.7.2
+          release-version: ${{ steps.set-version.outputs.release_version }}
 
   upload-to-release:
     name: Upload to Release
@@ -31,4 +47,5 @@ jobs:
     needs:
       - build-firmware
     with:
-      version: ${{ github.event.release.tag_name }}
+      version: ${{ needs.build-firmware.outputs.release_version }}
+      #version: ${{ github.event.release.tag_name }}
