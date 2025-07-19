@@ -99,7 +99,7 @@ binary_sensor:
 ##################################################################
 
 ##################################################################
-# Below is the real examle stuff
+# Below is the real example stuff
 
   - platform: km271_wifi
     # Betriebswerte 1 HC1
