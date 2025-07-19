@@ -212,7 +212,7 @@ binary_sensor:
     error_exhaust_gas_sensor:
       name: "Exhaust Gas Sensor Error"
     error_exhaust_gas_over_limit:
-      name: "FExhaust Gas Over Limit Error"
+      name: "Exhaust Gas Over Limit Error"
     error_safety_chain_released:
       name: "Safety Chain Error"
     error_external_disturbance:
