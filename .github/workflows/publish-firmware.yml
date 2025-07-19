@@ -50,4 +50,4 @@ jobs:
     needs: build-firmware
     uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.4.0
     with:
-      release-version: ${{ needs.set-release-version.outputs.release_version }}
+      version: ${{ needs.set-release-version.outputs.release_version }}
