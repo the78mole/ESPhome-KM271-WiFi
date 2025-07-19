@@ -18,9 +18,10 @@ esphome:
 
   platformio_options:
     upload_speed: 921600
-    #board_build.f_flash: 80000000L
-    #board_build.partitions: "default_8MB.csv
-    #upload_flash_size: "8MB"
+    board_flash_size: 8MB
+    board_build.f_flash: 80000000L
+    board_build.partitions: "default_8MB.csv"
+    upload_flash_size: "8MB"
 
   # This will allow for (future) project identification,
   # configuration and updates.

@@ -1,6 +1,6 @@
 packages:
   # Include all of the core configuration
-  core: !include buderus-km271_en.yaml
+  core: !include buderus-km271_en_espidf.yaml
 
 esphome:
   # This will allow for project identification,
@@ -14,9 +14,7 @@ esphome:
 # In this case it is the core yaml file that does not contain the extra things
 # that are provided by this factory yaml file as the user does not need these once adopted.
 dashboard_import:
-  #package_import_url: github://esphome/esphome-project-template/project-template-esp32-adopt.yaml@main
-  #package_import_url: github://the78mole/esphome_components/components/km271_wifi/km271-for-friends.yaml@main
-  package_import_url: github://the78mole/ESPhome-KM271-WiFi/blob/main/buderus-km271_en.yaml
+  package_import_url: github://the78mole/ESPhome-KM271-WiFi/blob/main/buderus-km271_en_espidf.yaml
   
 
 # Sets up Bluetooth LE (Only on ESP32) to allow the user
