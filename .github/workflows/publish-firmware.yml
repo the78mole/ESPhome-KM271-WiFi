@@ -31,11 +31,13 @@ jobs:
         run: |
           if [ "${{ github.event.release.tag_name }}" != "" ]; then
             # Direct release trigger
-            echo "release_version=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+            echo "Release version from event: ${{ github.event.release.tag_name }}"
+            echo "release_version=${{ github.event.release.tag_name }}" | tee -a $GITHUB_OUTPUT
           else
             # Workflow run trigger - get the latest release tag
+            echo "Fetching latest release tag..."
             LATEST_TAG=$(git describe --tags --abbrev=0)
-            echo "release_version=${LATEST_TAG}" >> $GITHUB_OUTPUT
+            echo "release_version=${LATEST_TAG}" | tee -a $GITHUB_OUTPUT
           fi
 
   build-firmware:
