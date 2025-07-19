@@ -1,0 +1,56 @@
+name: Semantic Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create SemVer Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # wichtig für vollständige git history
+
+      - name: Get latest version tag
+        id: get_latest
+        run: |
+          git fetch --tags
+          latest=$(git tag --list 'v*' --sort=-v:refname | head -n1 || echo "v0.0.0")
+          echo "latest=$latest" >> $GITHUB_OUTPUT
+
+      - name: Generate new version
+        id: semver
+        uses: paulhatch/semantic-version@v5.4.0
+        with:
+          tag_prefix: "v"
+          major_pattern: "^(feat|fix|refactor)!:"
+          minor_pattern: "^feat:"
+          search_commit_body: true
+          bump_each_commit: true
+
+      - name: Check if new release is needed
+        id: check
+        run: |
+          if [ "${{ steps.semver.outputs.version }}" == "${{ steps.get_latest.outputs.latest }}" ]; then
+            echo "No new version needed."
+            echo "release=false" >> $GITHUB_OUTPUT
+          else
+            echo "New version will be: ${{ steps.semver.outputs.version }}"
+            echo "release=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub Release
+        if: steps.check.outputs.release == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.semver.outputs.version }}
+          name: Release v${{ steps.semver.outputs.version }}
+          generate_release_notes: true
