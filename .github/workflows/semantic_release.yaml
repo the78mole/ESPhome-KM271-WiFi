@@ -39,7 +39,7 @@ jobs:
       - name: Check if new release is needed
         id: check
         run: |
-          if [ "${{ steps.semver.outputs.version }}" == "${{ steps.get_latest.outputs.latest }}" ]; then
+          if [ "v${{ steps.semver.outputs.version }}" == "${{ steps.get_latest.outputs.latest }}" ]; then
             echo "No new version needed."
             echo "release=false" >> $GITHUB_OUTPUT
           else
