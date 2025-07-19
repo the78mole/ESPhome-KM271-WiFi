@@ -2,5 +2,23 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["^\\.github/workflows/.*\\.ya?ml$"],
+      "matchStrings": [
+        "esphome-version:\\s*\\n(?:[ \\t]*- stable\\n)?(?<depValues>([ \\t]*- (?<currentValue>\\d+\\.\\d+\\.\\d+)\\n)+)"
+      ],
+      "depNameTemplate": "ghcr.io/esphome/esphome",
+      "datasourceTemplate": "docker"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["ghcr.io/esphome/esphome"],
+      "matchDatasources": ["docker"],
+      "groupName": "ESPHome Versionsupdate",
+      "matchUpdateTypes": ["minor", "patch"]
+    }
   ]
 }
