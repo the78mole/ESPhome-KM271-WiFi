@@ -1,5 +1,9 @@
 # ESPHome KM271-WiFi
 
+[![CI](https://github.com/the78mole/ESPhome-KM271-WiFi/actions/workflows/ci.yml/badge.svg)](https://github.com/the78mole/ESPhome-KM271-WiFi/actions/workflows/ci.yml)
+[![Publish Firmware](https://github.com/the78mole/ESPhome-KM271-WiFi/actions/workflows/publish-firmware.yml/badge.svg)](https://github.com/the78mole/ESPhome-KM271-WiFi/actions/workflows/publish-firmware.yml)
+[![Publish Pages](https://github.com/the78mole/ESPhome-KM271-WiFi/actions/workflows/publish-pages.yml/badge.svg)](https://github.com/the78mole/ESPhome-KM271-WiFi/actions/workflows/publish-pages.yml)
+
 This repo is the ESPhome project page of my KM271-WiFi hardware.
 
 The KM271-WiFi is an addon to the (oldish) Buderus oil heating control units like the Logamatic 2107.
