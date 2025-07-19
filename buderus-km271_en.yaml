@@ -4,7 +4,7 @@
 # toggle green led D2.
 # To upload a new firmware, search for the "Fallback Hotspot" WiFi and
 # log in with password "Z8zfajgxVvNw". It could take up to a minute for
-# the fallack AP to be enabled when not able to connect to the "test"
+# the fallback AP to be enabled when not able to connect to the "test"
 # wifi network. So, if status is blinking, give it a minute to show up.
 substitutions:
   name: "km271-for-friends"
