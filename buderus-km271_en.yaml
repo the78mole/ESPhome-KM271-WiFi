@@ -1,5 +1,5 @@
 # This is the configuration, I've put on the board.
-# If you apply voltage to it, the green LED D! serves as status led2
+# If you apply voltage to it, the green LED D1 serves as status led2
 # usually blinking with around 1 Hz. If you press button USER 1, it will
 # toggle green led D2.
 # To upload a new firmware, search for the "Fallback Hotspot" WiFi and
