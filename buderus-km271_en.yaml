@@ -202,7 +202,7 @@ binary_sensor:
       name: "DHW Priority Switching"
     # Kesselfehler
     error_burner_malfunction:
-      name: "FBurner Failure"
+      name: "Burner Failure"
     error_boiler_sensor:
       name: "Boiler Sensor Error"
     error_additional_sensor:
