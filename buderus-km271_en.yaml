@@ -351,7 +351,7 @@ select:
     config_ww_operation_mode:
       name: "Hot Water Operating Mode"
     config_ww_circular_pump_interval:
-      name: "WHot Water Circulation Pump Interval"
+      name: "Hot Water Circulation Pump Interval"
 
     config_heating_circuit_1_summer_winter_switch_temperature:
       name: "HC1 Summer Winter Changeover Temperature"
