@@ -35,7 +35,6 @@ jobs:
           minor_pattern: "^feat:"
           version_format: "${major}.${minor}.${patch}"
           search_commit_body: true
-          bump_each_commit: true
 
       - name: Check if new release is needed
         id: check
