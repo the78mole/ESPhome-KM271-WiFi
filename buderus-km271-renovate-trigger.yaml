@@ -1,0 +1,11 @@
+# This file is only to trigger a rebuild through renovate, when
+# a new release of esphome_components is available.
+# It is not used in any way by the esphome configuration.
+# Please do not add this file to CI or Publish Firmware runs.
+# It is not complete and esphome will fail to use it.
+
+# Use a fixed version for testing Renovate
+external_components:
+  - source: github://the78mole/esphome_components@v1.0.14
+    components: [ km271_wifi ]
+
