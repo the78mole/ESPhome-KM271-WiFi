@@ -3,6 +3,7 @@
 [![CI](https://github.com/the78mole/ESPhome-KM271-WiFi/actions/workflows/ci.yml/badge.svg)](https://github.com/the78mole/ESPhome-KM271-WiFi/actions/workflows/ci.yml)
 [![Publish Firmware](https://github.com/the78mole/ESPhome-KM271-WiFi/actions/workflows/publish-firmware.yml/badge.svg)](https://github.com/the78mole/ESPhome-KM271-WiFi/actions/workflows/publish-firmware.yml)
 [![Publish Pages](https://github.com/the78mole/ESPhome-KM271-WiFi/actions/workflows/publish-pages.yml/badge.svg)](https://github.com/the78mole/ESPhome-KM271-WiFi/actions/workflows/publish-pages.yml)
+![GitHub Release](https://img.shields.io/github/v/release/the78mole/ESPhome-KM271-WiFi)
 
 This repo is the ESPhome project page of my KM271-WiFi hardware.
 
