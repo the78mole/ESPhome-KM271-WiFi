@@ -1,0 +1,56 @@
+substitutions:
+  name: "buderus-km271-test"
+  device_description: "Test configuration for Renovate esphome_components tracking"
+  friendly_name: "Buderus KM271 Test"
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  comment: ${device_description}
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "test123456789012345678901234567890="
+
+ota:
+  - platform: esphome
+    password: "test"
+
+wifi:
+  ap:
+    ssid: "${friendly_name} Hotspot"
+    password: "12345678"
+
+captive_portal:
+
+# Use a fixed version for testing Renovate
+external_components:
+  - source: github://the78mole/esphome_components@v1.0.14
+    components: [ km271_wifi ]
+
+# Example KM271 WiFi component usage
+km271_wifi:
+  uart_id: km271_uart
+
+uart:
+  - id: km271_uart
+    baud_rate: 2400
+    tx_pin: GPIO17
+    rx_pin: GPIO16
+
+# Example sensors
+sensor:
+  - platform: km271_wifi
+    outdoor_temperature:
+      name: "Outdoor Temperature"
+    boiler_temperature:
+      name: "Boiler Temperature"
