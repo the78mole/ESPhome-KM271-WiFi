@@ -25,6 +25,17 @@
       ],
       "depNameTemplate": "ghcr.io/esphome/esphome",
       "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/.*\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "source:\\s+github://the78mole/esphome_components@(?<currentValue>[^\\s\\n]+)"
+      ],
+      "depNameTemplate": "the78mole/esphome_components",
+      "datasourceTemplate": "github-releases"
     }
   ],
   "packageRules": [
@@ -39,6 +50,20 @@
       "matchUpdateTypes": [
         "minor",
         "patch"
+      ]
+    },
+    {
+      "matchPackageNames": [
+        "the78mole/esphome_components"
+      ],
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "groupName": "ESPHome Components Update",
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "major"
       ]
     }
   ]

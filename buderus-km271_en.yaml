@@ -69,7 +69,7 @@ external_components:
 #      type: local
 #      path: my_components/components
 #    components: [ km271_wifi ]
-  - source: github://the78mole/esphome_components@main
+  - source: github://the78mole/esphome_components@v1.0.14
     components: [ km271_wifi ]
  
 status_led:
