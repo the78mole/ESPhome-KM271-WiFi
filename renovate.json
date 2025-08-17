@@ -3,6 +3,8 @@
   "extends": [
     "config:recommended"
   ],
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "📦 Renovate Dependency Dashboard",
   "customManagers": [
     {
       "customType": "regex",
