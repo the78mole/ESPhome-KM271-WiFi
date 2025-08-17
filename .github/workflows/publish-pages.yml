@@ -1,21 +1,21 @@
 name: Publish Pages
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'static/**'
-      - '.github/workflows/publish-pages.yml'
   workflow_run:
     workflows:
       - Publish Firmware
     types:
       - completed
-  pull_request:
-    paths:
-      - 'static/**'
-      - '.github/workflows/publish-pages.yml'
+  # pull_request:
+  #   paths:
+  #     - 'static/**'
+  #     - '.github/workflows/publish-pages.yml'
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'static/**'
+  #     - '.github/workflows/publish-pages.yml'
 
 
 concurrency:
@@ -46,7 +46,7 @@ jobs:
           out-file-path: output/firmware
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3.0.1
+        uses: actions/upload-pages-artifact@v4.0.0
         with:
           path: output
           retention-days: 1
