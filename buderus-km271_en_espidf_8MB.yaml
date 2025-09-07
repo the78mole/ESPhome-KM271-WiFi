@@ -70,10 +70,10 @@ external_components:
   - source: github://the78mole/esphome_components@main
     components: [ km271_wifi ]
 
-esp32_improv:
-  authorizer: none
+#esp32_improv:
+#  authorizer: none
 
-improv_serial:
+#improv_serial:
 
 
 status_led:
