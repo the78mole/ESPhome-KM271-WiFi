@@ -28,6 +28,26 @@ repos:
             \.github/workflows/.*\.ya?ml$
           )$
 
+  # Python code quality
+  - repo: https://github.com/psf/black
+    rev: 24.8.0
+    hooks:
+      - id: black
+        language_version: python3
+        args: ['--line-length=100']
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: ['--profile', 'black', '--line-length=100']
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.1.1
+    hooks:
+      - id: flake8
+        args: ['--max-line-length=100', '--extend-ignore=E203,W503']
+
   # ESPHome specific validation
   - repo: local
     hooks:
@@ -57,6 +77,18 @@ repos:
             else
               echo "⚠️  ESPHome not found, skipping validation"
             fi
+
+      - id: esphome-name-length-check
+        name: ESPHome name length check
+        entry: python3
+        language: system
+        files: '^[^/]+\.ya?ml$'
+        exclude: |
+          (?x)^(
+            \.github/.*|
+            renovate\.json$
+          )$
+        args: ['.pre-commit-scripts/check_esphome_name_length.py']
 
   # Markdown formatting
   - repo: https://github.com/igorshubovych/markdownlint-cli
