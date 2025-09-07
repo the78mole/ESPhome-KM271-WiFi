@@ -48,6 +48,14 @@ repos:
       - id: flake8
         args: ['--max-line-length=100', '--extend-ignore=E203,W503']
 
+  # Shell script linting
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+        args: ['--severity=warning']  # Only show warnings and errors, not info
+        types: [shell]
+
   # ESPHome specific validation
   - repo: local
     hooks:
