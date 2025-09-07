@@ -15,4 +15,3 @@ esphome:
 # that are provided by this factory yaml file as the user does not need these once adopted.
 dashboard_import:
   package_import_url: github://the78mole/ESPhome-KM271-WiFi/buderus-km271_en.yaml@main
-

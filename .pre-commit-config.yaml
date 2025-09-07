@@ -1,0 +1,77 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  # General code quality and formatting
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: ['--unsafe']  # Allow custom YAML tags used by ESPHome
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: debug-statements
+      - id: detect-private-key
+
+  # YAML formatting and linting
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: [--format, parsable]  # Removed --strict flag
+        files: \.(yaml|yml)$
+        exclude: |
+          (?x)^(
+            \.github/workflows/.*\.ya?ml$
+          )$
+
+  # ESPHome specific validation
+  - repo: local
+    hooks:
+      - id: esphome-config-check
+        name: ESPHome config validation
+        entry: bash
+        language: system
+        files: '^[^/]+\.ya?ml$'
+        exclude: |
+          (?x)^(
+            \.github/.*|
+            .*\.factory\.ya?ml$|
+            buderus-km271-test\.ya?ml$
+          )$
+        args:
+          - -c
+          - |
+            if command -v esphome >/dev/null 2>&1; then
+              for file in "$@"; do
+                echo "Validating ESPHome config: $file"
+                esphome config "$file" >/dev/null 2>&1 || {
+                  echo "❌ ESPHome validation failed for $file"
+                  exit 1
+                }
+                echo "✅ ESPHome validation passed for $file"
+              done
+            else
+              echo "⚠️  ESPHome not found, skipping validation"
+            fi
+
+  # Markdown formatting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.41.0
+    hooks:
+      - id: markdownlint
+        args: ['--fix']
+
+  # GitHub Actions workflow validation
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.1
+    hooks:
+      - id: actionlint
+
+# Configuration for yamllint
+# Create .yamllint.yml file with ESPHome-friendly rules
+default_language_version:
+  python: python3

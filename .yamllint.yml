@@ -1,0 +1,58 @@
+# yamllint configuration for ESPHome projects
+extends: default
+
+rules:
+  # ESPHome uses long lines in some cases
+  line-length:
+    max: 120
+    level: warning
+
+  # ESPHome uses custom tags like !lambda, !secret, etc.
+  truthy:
+    allowed-values: ['true', 'false', 'on', 'off', 'yes', 'no']
+    check-keys: false
+
+  # ESPHome configurations often have deep nesting
+  indentation:
+    spaces: 2
+    indent-sequences: true
+    check-multi-line-strings: false
+
+  # ESPHome allows empty values in some contexts
+  empty-values:
+    forbid-in-block-mappings: false
+    forbid-in-flow-mappings: false
+
+  # ESPHome uses comments for documentation - be more lenient
+  comments:
+    min-spaces-from-content: 1
+    require-starting-space: false
+
+  # ESPHome may have duplicate keys in some contexts (substitutions, etc.)
+  key-duplicates: disable
+
+  # ESPHome uses float values that may look like octal
+  octal-values: disable
+
+  # Don't require document start markers
+  document-start: disable
+
+  # Be more lenient with comment indentation
+  comments-indentation: disable
+
+  # Allow more blank lines
+  empty-lines:
+    max: 4
+    max-start: 3
+    max-end: 3
+
+  # Allow spaces in brackets for ESPHome syntax
+  brackets:
+    max-spaces-inside: 2
+    max-spaces-inside-empty: 0
+
+# Ignore patterns
+ignore: |
+  .github/workflows/
+  .venv/
+  __pycache__/

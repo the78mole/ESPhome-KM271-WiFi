@@ -30,6 +30,7 @@ jobs:
            - buderus-km271_en_8MB
            - buderus-km271_en_espidf
            - buderus-km271_en
+           - buderus-km271_en_espidf_8MB
 #          - project-template-esp32
 #          - project-template-esp32-c3
 #          - project-template-esp32-s3
@@ -37,8 +38,8 @@ jobs:
 
         esphome-version:
           - stable
-          - 2025.8.2
-          
+          - 2025.8.3
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@v5.0.0

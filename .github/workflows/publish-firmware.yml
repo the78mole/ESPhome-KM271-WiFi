@@ -49,13 +49,14 @@ jobs:
         buderus-km271_en_8MB.factory.yaml
         buderus-km271_en_espidf.factory.yaml
         buderus-km271_en.factory.yaml
-      esphome-version: 2025.8.2
+        buderus-km271_en_espidf_8MB.factory.yaml
+      esphome-version: 2025.8.3
       combined-name: buderus-km271-for-friends
       release-version: ${{ needs.set-release-version.outputs.release_version }}
 
   upload-to-release:
     name: Upload to Release
-    needs: 
+    needs:
       - build-firmware
       - set-release-version
     uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.8.1

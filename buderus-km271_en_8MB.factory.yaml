@@ -15,7 +15,7 @@ esphome:
 # that are provided by this factory yaml file as the user does not need these once adopted.
 dashboard_import:
   package_import_url: github://the78mole/ESPhome-KM271-WiFi/blob/main/buderus-km271_en_8MB.yaml
-  
+
 
 # Sets up Bluetooth LE (Only on ESP32) to allow the user
 # to provision wifi credentials to the device.

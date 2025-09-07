@@ -71,10 +71,10 @@ external_components:
 #    components: [ km271_wifi ]
   - source: github://the78mole/esphome_components@main
     components: [ km271_wifi ]
- 
+
 status_led:
   id: ledgn1
-  pin: 
+  pin:
     number: GPIO21
     inverted: true
 
@@ -94,7 +94,7 @@ binary_sensor:
         pullup: true
 
 # Above is all the "give-away hardware suggestion stuff"
-# It is the place for cleanup of to reduce flash footprint, like: 
+# It is the place for cleanup of to reduce flash footprint, like:
 # improv, captive portal, dashboard_import,...)
 ##################################################################
 
@@ -258,14 +258,14 @@ output:
   - platform: gpio
     id: led3
     #name: LED3_Yellow
-    pin: 
+    pin:
       number: 23
       mode: OUTPUT
       inverted: true
   - platform: gpio
     id: led4
     #name: LED4_Red
-    pin: 
+    pin:
       number: 25
       mode: OUTPUT
       inverted: true
@@ -450,11 +450,11 @@ sensor:
     filters:
       - multiply: 28.1826
       - throttle_average: 60s
-      
+
 switch:
   - platform: gpio
     name: LED2_Green
-    pin: 
+    pin:
       number: 22
       mode: OUTPUT
       inverted: true
