@@ -27,10 +27,10 @@ jobs:
       matrix:
         #### Modify below here to match your project ####
         file:
-           - buderus-km271_en_8MB
-           - buderus-km271_en_espidf
-           - buderus-km271_en
-           - buderus-km271_en_espidf_8MB
+          - buderus-km271_en_espidf
+          - buderus-km271_en
+          - buderus-km271_en_espidf_8MB
+#          - buderus-km271_en_8MB
 #          - project-template-esp32
 #          - project-template-esp32-c3
 #          - project-template-esp32-s3
