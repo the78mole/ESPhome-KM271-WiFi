@@ -50,7 +50,7 @@ jobs:
         buderus-km271_en_espidf.factory.yaml
         buderus-km271_en.factory.yaml
         buderus-km271_en_espidf_8MB.factory.yaml
-      esphome-version: 2025.8.3
+      esphome-version: 2025.11.0
       combined-name: buderus-km271-for-friends
       release-version: ${{ needs.set-release-version.outputs.release_version }}
 
