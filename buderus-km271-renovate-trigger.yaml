@@ -6,5 +6,5 @@
 
 # Use a fixed version for testing Renovate
 external_components:
-  - source: github://the78mole/esphome_components@v1.0.36
+  - source: github://the78mole/esphome_components@v1.0.39
     components: [ km271_wifi ]
