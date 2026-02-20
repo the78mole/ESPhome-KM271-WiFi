@@ -38,7 +38,7 @@ jobs:
 
         esphome-version:
           - stable
-          - 2025.12.5
+          - 2026.2.0
 
     steps:
       - name: Checkout source code
