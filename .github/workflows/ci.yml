@@ -38,11 +38,11 @@ jobs:
 
         esphome-version:
           - stable
-          - 2026.2.0
+          - 2026.8.0
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v7.0.1
       - name: ESPHome ${{ matrix.esphome-version }}
         uses: esphome/build-action@v7.1.0
         with:

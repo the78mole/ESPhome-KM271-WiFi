@@ -22,7 +22,7 @@ jobs:
       release_version: ${{ steps.set-version.outputs.release_version }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -49,7 +49,7 @@ jobs:
         buderus-km271_en_espidf.factory.yaml
         buderus-km271_en.factory.yaml
         buderus-km271_en_espidf_8MB.factory.yaml
-      esphome-version: 2026.2.0
+      esphome-version: 2026.8.0
       combined-name: buderus-km271-for-friends
       release-version: ${{ needs.set-release-version.outputs.release_version }}
 
