@@ -6,7 +6,9 @@ on:
       - main
     paths:
       - '*.yaml'
-      - '.github/workflows/*.yml'
+      # '*.yml' matched weder Unterverzeichnisse noch die .yaml-Workflows, womit
+      # diese Datei sich selbst nicht auslösen konnte.
+      - '.github/workflows/**'
 
 permissions:
   contents: write
@@ -100,3 +102,20 @@ jobs:
           tag_name: v${{ steps.semver.outputs.version }}
           name: Release v${{ steps.semver.outputs.version }}
           body: ${{ steps.changelog.outputs.release_notes }}
+
+      # Publish Firmware runs via workflow_run and cannot read these outputs directly,
+      # so hand the tag over as an artifact. Without it that workflow has to guess the
+      # version from the newest tag, which breaks when releases follow each other fast.
+      - name: Record released version
+        if: steps.check.outputs.release == 'true'
+        run: |
+          mkdir -p release-meta
+          echo "v${{ steps.semver.outputs.version }}" | tee release-meta/version.txt
+
+      - name: Upload released version
+        if: steps.check.outputs.release == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-version
+          path: release-meta/version.txt
+          retention-days: 1
