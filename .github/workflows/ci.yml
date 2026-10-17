@@ -4,7 +4,9 @@ on:
   pull_request:
     paths:
       - '*.yaml'
-      - '.github/workflows/ci.yml'
+      # Vorher nur ci.yml, womit PRs gegen die uebrigen Workflows voellig
+      # ungeprueft blieben - sie loesten gar keinen Check aus.
+      - '.github/workflows/**'
   # push:
   #   branches:
   #     - main
